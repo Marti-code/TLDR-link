@@ -6,13 +6,6 @@
   --accent: #4ca9ff;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Imprima&family=Press+Start+2P&display=swap");
-
-@font-face {
-  font-family: Youregone;
-  src: url("./youre_gone/youregone.otf") format("opentype");
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -21,21 +14,26 @@
 
 h1 {
   color: var(--white);
-  font-family: "Youregone";
-  font-size: 3.4rem;
+  font-size: 4.2rem;
   line-height: 15vh;
+  font-family: "Lalezar", cursive;
+}
+
+p,
+td,
+button {
+  font-family: "Imprima", sans-serif;
 }
 
 button {
   background-color: var(--dark-gray);
   color: var(--white);
-  border: none;
+  width: 100%;
   outline: none;
   transition: all 0.3s ease;
   border-radius: 0.6rem;
   padding: 0.6rem;
   font-size: 1.2rem;
-  font-family: "Imprima", sans-serif;
 }
 
 button:hover {
@@ -57,8 +55,9 @@ body {
 }
 
 header {
-  text-align: center;
   height: 15vh;
+  display: flex;
+  justify-content: center;
 }
 
 main {
@@ -83,6 +82,80 @@ form {
   margin-bottom: 1.2rem;
 }
 
+.btn-holder {
+  width: auto;
+}
+
+thead {
+  color: var(--light-gray);
+  font-weight: 400;
+}
+
 .qr-code-img {
   width: 50px;
+}
+
+@media only screen and (min-width: 600px) {
+  h1 {
+    font-size: 4.6rem;
+  }
+
+  form {
+    flex-direction: row;
+    gap: 0rem;
+    margin-bottom: 1.2rem;
+    width: auto;
+  }
+
+  .main-info {
+    font-size: 1.2rem;
+  }
+
+  .btn-holder {
+    height: 4rem;
+    border: 1px solid var(--black);
+    border-left: none;
+    border-radius: 0 0.6rem 0.6rem 0;
+    padding: 0.8rem;
+  }
+
+  button {
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--black);
+  }
+
+  input {
+    border: 1px solid var(--black);
+    border-right: none;
+    padding: 0.6rem 1rem;
+    height: 4rem;
+    border-radius: 0.6rem 0 0 0.6rem;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 5rem;
+  }
+
+  main {
+    padding: 1.4rem 10vw;
+    border-radius: 2rem;
+    margin: 0 1rem 1rem 1rem;
+    min-height: calc(85vh - 1rem);
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  h1 {
+    font-size: 7rem;
+    margin-top: 0.8rem;
+  }
+
+  main {
+    padding: 1.6rem 15vw;
+    margin: 0 2rem 2rem 2rem;
+    min-height: calc(85vh - 2rem);
+  }
 }

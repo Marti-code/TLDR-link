@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TLDR-link</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Imprima&family=Lalezar&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -24,16 +32,19 @@
           id="fullUrl"
           required
         />
-        <button id="submit-btn" type="submit">SHRINK</button>
+
+        <div class="btn-holder">
+          <button id="submit-btn" type="submit">SHRINK</button>
+        </div>
       </form>
 
       <table>
         <thead>
           <tr>
-            <th>Full url</th>
-            <th>Short Url</th>
-            <th>Qr</th>
-            <th>Clicks</th>
+            <td>Full url</td>
+            <td>Short Url</td>
+            <td>Qr</td>
+            <td>Clicks</td>
           </tr>
         </thead>
         <tbody>
