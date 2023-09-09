@@ -2,7 +2,6 @@
   --black: #000;
   --dark-gray: #1e1e1e;
   --light-gray: #4f4f4f;
-  --tr: #f9f9f9;
   --white: #fff;
   --accent: #4ca9ff;
 }
@@ -11,6 +10,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 h1 {
@@ -109,6 +112,7 @@ table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 0.6rem;
+  font-size: 0.8rem;
 }
 
 td {
@@ -120,24 +124,40 @@ td:last-of-type {
 }
 
 tbody tr {
+  border-top: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
   width: 100%;
-  border-radius: 1rem;
   height: 100px;
-  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-tbody tr:hover {
-  box-shadow: 0px 19px 30px 0px rgba(0, 0, 0, 0.1);
-  transform: translateY(-4px);
+.column-flex {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100vw - 9.6rem);
+}
+
+.column-flex a {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Adjust the number of lines before truncation */
+  -webkit-box-orient: vertical;
 }
 
 thead {
-  color: var(--light-gray);
-  font-weight: 400;
+  display: none;
 }
 
 .qr-code-img {
-  width: 50px;
+  width: 5rem;
+}
+
+.desktop-columns {
+  display: none;
 }
 
 @media only screen and (min-width: 600px) {
@@ -191,8 +211,45 @@ thead {
     min-height: calc(85vh - 1rem);
   }
 
-  .qr-code-img {
-    width: 80px;
+  table {
+    font-size: 1rem;
+  }
+
+  tbody tr {
+    width: 100%;
+    height: 100px;
+    border-radius: 1rem;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  tbody tr:hover {
+    box-shadow: 0px 19px 30px 0px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+  }
+
+  thead {
+    display: block;
+    color: var(--light-gray);
+    font-weight: 400;
+  }
+
+  td {
+    padding-right: 1rem;
+    min-width: 6rem;
+    text-align: center;
+  }
+
+  .long-url {
+    text-align: left;
+  }
+
+  .column-td {
+    display: none;
+  }
+
+  .desktop-columns {
+    display: inline;
   }
 }
 

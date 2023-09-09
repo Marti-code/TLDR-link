@@ -43,22 +43,33 @@
       <table>
         <thead>
           <tr>
-            <td>Original url</td>
-            <td>Short Url</td>
-            <td>Clicks</td>
             <td>QR code</td>
+            <td>Clicks</td>
+            <td>Short Url</td>
+            <td>Original url</td>
           </tr>
         </thead>
         <tbody>
           <% shortUrls.forEach(url => { %>
           <tr>
-            <td>
+            <!-- desktop -->
+            <td class="desktop-columns long-url">
               <a href="<%= url.full %>"><%= url.full %></a>
             </td>
-            <td>
+            <td class="desktop-columns">
               <a class="short-urls" href="<%= url.short %>"><%= url.short %></a>
             </td>
-            <td><%= url.clicks %></td>
+            <td class="desktop-columns"><%= url.clicks %></td>
+            <!-- mobile -->
+            <td colspan="3" class="column-td">
+              <div class="column-flex">
+                <a href="<%= url.full %>"><%= url.full %></a>
+                <a class="short-urls" href="<%= url.short %>"
+                  ><%= url.short %></a
+                >
+                <%= url.clicks %>
+              </div>
+            </td>
             <td>
               <img
                 src="<%= url.qrImage + url.short %>"
@@ -67,6 +78,7 @@
               />
             </td>
           </tr>
+
           <% }) %>
         </tbody>
       </table>
