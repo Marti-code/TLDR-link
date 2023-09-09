@@ -12,6 +12,10 @@ const shortUrlScheme = mongoose.Schema({
     required: true,
     default: shortId.generate,
   },
+  qrImage: {
+    type: String,
+    required: true,
+  },
   clicks: {
     type: Number,
     required: true,

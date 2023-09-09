@@ -1,0 +1,88 @@
+:root {
+  --black: #000;
+  --dark-gray: #1e1e1e;
+  --light-gray: #4f4f4f;
+  --white: #fff;
+  --accent: #4ca9ff;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Imprima&family=Press+Start+2P&display=swap");
+
+@font-face {
+  font-family: Youregone;
+  src: url("./youre_gone/youregone.otf") format("opentype");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: var(--white);
+  font-family: "Youregone";
+  font-size: 3.4rem;
+  line-height: 15vh;
+}
+
+button {
+  background-color: var(--dark-gray);
+  color: var(--white);
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+  border-radius: 0.6rem;
+  padding: 0.6rem;
+  font-size: 1.2rem;
+  font-family: "Imprima", sans-serif;
+}
+
+button:hover {
+  background-color: var(--black);
+}
+
+input {
+  border: 1px solid var(--black);
+  outline: none;
+  border-radius: 0.6rem;
+  padding: 0.6rem 1rem;
+  height: 4rem;
+  font-size: 1.2rem;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--black);
+}
+
+header {
+  text-align: center;
+  height: 15vh;
+}
+
+main {
+  background-color: var(--white);
+  min-height: 85vh;
+  border-radius: 2rem 2rem 0 0;
+  padding: 1.2rem;
+}
+
+.main-info {
+  padding: 0.6rem 1.8rem 1.4rem 1.8rem;
+  text-align: center;
+  font-family: "Imprima", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.qr-code-img {
+  width: 50px;
+}
