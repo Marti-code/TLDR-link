@@ -43,10 +43,10 @@
       <table>
         <thead>
           <tr>
-            <td>Full url</td>
+            <td>Original url</td>
             <td>Short Url</td>
-            <td>Qr</td>
             <td>Clicks</td>
+            <td>QR code</td>
           </tr>
         </thead>
         <tbody>
@@ -56,8 +56,9 @@
               <a href="<%= url.full %>"><%= url.full %></a>
             </td>
             <td>
-              <a href="<%= url.short %>"><%= url.short %></a>
+              <a class="short-urls" href="<%= url.short %>"><%= url.short %></a>
             </td>
+            <td><%= url.clicks %></td>
             <td>
               <img
                 src="<%= url.qrImage + url.short %>"
@@ -65,7 +66,6 @@
                 class="qr-code-img"
               />
             </td>
-            <td><%= url.clicks %></td>
           </tr>
           <% }) %>
         </tbody>
