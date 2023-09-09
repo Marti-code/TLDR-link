@@ -71,13 +71,14 @@ body {
 }
 
 header {
+  padding-top: 0.8rem;
   height: 15vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 header img {
-  margin-top: 2.3rem;
   width: 50px;
   height: 51px;
 }
@@ -259,7 +260,6 @@ thead {
   }
 
   header img {
-    margin-top: 0.6rem;
     width: 100px;
     height: 101px;
   }
