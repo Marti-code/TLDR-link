@@ -13,6 +13,7 @@
     />
 
     <link rel="stylesheet" href="./style.css" />
+    <script defer src="./main.js"></script>
   </head>
   <body>
     <header>
@@ -49,38 +50,7 @@
             <td>Original url</td>
           </tr>
         </thead>
-        <tbody>
-          <% shortUrls.forEach(url => { %>
-          <tr>
-            <!-- desktop -->
-            <td class="desktop-columns long-url">
-              <a href="<%= url.full %>"><%= url.full %></a>
-            </td>
-            <td class="desktop-columns">
-              <a class="short-urls" href="<%= url.short %>"><%= url.short %></a>
-            </td>
-            <td class="desktop-columns"><%= url.clicks %></td>
-            <!-- mobile -->
-            <td colspan="3" class="column-td">
-              <div class="column-flex">
-                <a href="<%= url.full %>"><%= url.full %></a>
-                <a class="short-urls" href="<%= url.short %>"
-                  ><%= url.short %></a
-                >
-                <%= url.clicks %>
-              </div>
-            </td>
-            <td>
-              <img
-                src="<%= url.qrImage + url.short %>"
-                alt="qr-code"
-                class="qr-code-img"
-              />
-            </td>
-          </tr>
-
-          <% }) %>
-        </tbody>
+        <tbody class="tbody"></tbody>
       </table>
     </main>
   </body>

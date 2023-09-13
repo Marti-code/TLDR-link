@@ -4,7 +4,7 @@
   "description": "a url shortener",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "author": "Martyna Huza",
   "license": "ISC",
@@ -12,6 +12,7 @@
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.0",
     "shortid": "^2.2.16"
   },

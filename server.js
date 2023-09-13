@@ -3,8 +3,12 @@ const app = express();
 
 const ShortUrl = require("./models/shortUrl");
 
-const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
+
+const secretKey = process.env.SECRET_KEY;
+
+const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
@@ -21,18 +25,42 @@ const connectDB = async () => {
 connectDB();
 
 app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static("public"));
 
-app.get("/", async (req, res) => {
-  const shortUrls = await ShortUrl.find();
-  res.render("index", { shortUrls: shortUrls });
+let token = "";
+
+app.post("/authenticate", (req, res) => {
+  const payload = {
+    key: Date.now().toString(),
+  };
+  token = jwt.sign(payload, secretKey);
+  console.log(token);
+  res.json({ token });
 });
 
+//load the website and the url codes
+app.get("/", async (req, res) => {
+  res.render("index");
+});
+
+//return the user's links based on the key
+app.get("/api/shortened-links", async (req, res) => {
+  const userKey = req.query.userKey; // Retrieve the user's key from the query parameters
+
+  // Fetch the user's shortened links from the database based on userKey
+  const userShortenedLinks = await ShortUrl.find({ userKey: userKey });
+
+  // Send the user's shortened links as a JSON response
+  res.json(userShortenedLinks);
+});
+
+//create a short link and save it in the database
 app.post("/shortUrls", async (req, res) => {
   await ShortUrl.create({
-    full: req.body.fullUrl,
-    qrImage: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=",
+    userKey: req.body.key,
+    full: req.body.full,
   });
 
   res.redirect("/");
