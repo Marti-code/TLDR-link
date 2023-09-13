@@ -19,7 +19,8 @@ const shortUrlScheme = mongoose.Schema({
   qrImage: {
     type: String,
     required: true,
-    default: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=",
+    default:
+      "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tldr-link.onrender.com/",
   },
   clicks: {
     type: Number,
