@@ -1,3 +1,7 @@
+/**
+ * Generate a json web token for the user's browser
+ * @returns {string} - A web token in JSON format
+ */
 const generateShortenedLinkKey = async () => {
   try {
     const response = await fetch("/authenticate", {
@@ -16,7 +20,10 @@ const generateShortenedLinkKey = async () => {
   }
 };
 
-// get the shortened links from server and display them
+/**
+ * Fetch the shortened links from server and display them
+ * @param {String} userKey - a json web token that is stored in a local storage
+ */
 const fetchShortenedLinksFromServer = (userKey) => {
   // Make a GET request to the server to fetch the user's shortened links
   fetch(`/api/shortened-links?userKey=${userKey}`)
@@ -27,10 +34,10 @@ const fetchShortenedLinksFromServer = (userKey) => {
       return response.json();
     })
     .then((data) => {
-      //clear before adding
+      //clear the table's body before adding any links
       document.querySelector(".tbody").innerHTML = "";
 
-      //add all the user's links
+      //add all the user's links to the table's body
       data.forEach((el) => {
         document.querySelector(".tbody").innerHTML += `
           <tr>
@@ -69,17 +76,24 @@ const fetchShortenedLinksFromServer = (userKey) => {
     });
 };
 
-// When the user revisits the website, retrieve the key and fetch their shortened links
+/**
+ * When the user revisits the website, retrieve the key and fetch their shortened links
+ */
 const userKey = localStorage.getItem("shortenedLinkKey");
 if (userKey) {
   fetchShortenedLinksFromServer(userKey);
-} else if (userKey == undefined || !userKey) {
+}
+//if user's there for the first time, create a token and store it in local storage
+else if (userKey == undefined || !userKey) {
   generateShortenedLinkKey().then((token) => {
     localStorage.setItem("shortenedLinkKey", token);
   });
 }
 
-const sendTokenToServer = () => {
+/**
+ * Send token and full url to server in json format
+ */
+const sendDataToServer = () => {
   const key = localStorage.getItem("shortenedLinkKey");
   const fullUrl = document.querySelector("#fullUrl");
   const full = fullUrl.value;
@@ -99,8 +113,11 @@ const sendTokenToServer = () => {
   });
 };
 
+/**
+ * When form is submitted, send token and full url to server
+ */
 document.querySelector("#submit-btn").addEventListener("click", (event) => {
   event.preventDefault();
-  sendTokenToServer();
+  sendDataToServer();
   window.location.href = "/";
 });
