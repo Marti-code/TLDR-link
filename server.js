@@ -9,23 +9,10 @@ require("dotenv").config();
 
 const secretKey = process.env.SECRET_KEY;
 
-const mongoose = require("mongoose");
+// Import the connectDB function
+const connectDB = require("./conn.js");
 
-/**
- * Connect to the mongodb database using mongoose
- */
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGODB_CONNECT, {
-      dbName: "tldr-links",
-    });
-
-    console.log(`MongoDB Connected: ${mongoose.connection.host}`);
-  } catch (error) {
-    console.error(`Error: ${error}`);
-    process.exit();
-  }
-};
+// Call the connectDB function to establish the database connection
 connectDB();
 
 // Set view engine, configure middleware, and initialize token variable
