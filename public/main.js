@@ -95,22 +95,38 @@ else if (userKey == undefined || !userKey) {
  */
 const sendDataToServer = () => {
   const key = localStorage.getItem("shortenedLinkKey");
+  const customization = document.querySelector("#customization");
   const fullUrl = document.querySelector("#fullUrl");
+
   const full = fullUrl.value;
 
-  // Create an object with the key to send in the request body
-  const data = { key, full };
+  const trimmedCustomization = customization.value.trim();
 
-  // Make a POST request to your server
+  // Create an object with the key to send in the request body
+  const data = { key, full, trimmedCustomization };
+
   fetch("/shortUrls", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data), // Convert the data object to JSON
-  }).catch((error) => {
-    console.error("Shorten link error:", error);
-  });
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((response) => {
+      if (response == "This short url is taken") {
+        customization.value = "";
+        customization.placeholder = "This short url is taken";
+      }
+    })
+    .catch((error) => {
+      console.error("Shorten link error:", error);
+    });
 };
 
 /**
@@ -119,5 +135,5 @@ const sendDataToServer = () => {
 document.querySelector("#submit-btn").addEventListener("click", (event) => {
   event.preventDefault();
   sendDataToServer();
-  window.location.href = "/";
+  // window.location.href = "/";
 });

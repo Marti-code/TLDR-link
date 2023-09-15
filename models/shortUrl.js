@@ -27,6 +27,10 @@ const shortUrlScheme = mongoose.Schema({
     required: true,
     default: 0,
   },
+  customization: {
+    type: String,
+    default: "",
+  },
 });
 
 module.exports = mongoose.model("ShortUrl", shortUrlScheme);

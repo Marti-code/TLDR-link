@@ -63,13 +63,37 @@ app.get("/api/shortened-links", async (req, res) => {
  * Create and save in db a short link using userKey (json web token) and full url
  */
 app.post("/shortUrls", async (req, res) => {
-  await ShortUrl.create({
-    userKey: req.body.key,
-    full: req.body.full,
-  });
+  if (req.body.trimmedCustomization == "") {
+    await ShortUrl.create({
+      userKey: req.body.key,
+      full: req.body.full,
+    });
 
-  // go back to the main page
-  res.redirect("/");
+    res.json("ok");
+
+    // go back to the main page
+    // res.redirect("/");
+  } else {
+    const existingCustomizations = await ShortUrl.find({
+      customization: req.body.trimmedCustomization,
+    });
+
+    if (existingCustomizations.length != 0) {
+      res.json("This short url is taken");
+    } else {
+      await ShortUrl.create({
+        userKey: req.body.key,
+        full: req.body.full,
+        short: req.body.trimmedCustomization,
+        customization: req.body.trimmedCustomization,
+      });
+
+      res.json("ok");
+
+      // go back to the main page
+      // res.redirect("/");
+    }
+  }
 });
 
 /**
