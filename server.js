@@ -70,16 +70,13 @@ app.post("/shortUrls", async (req, res) => {
     });
 
     res.json("ok");
-
-    // go back to the main page
-    // res.redirect("/");
   } else {
     const existingCustomizations = await ShortUrl.find({
       customization: req.body.trimmedCustomization,
     });
 
     if (existingCustomizations.length != 0) {
-      res.json("This short url is taken");
+      res.json("not ok");
     } else {
       await ShortUrl.create({
         userKey: req.body.key,
@@ -89,9 +86,6 @@ app.post("/shortUrls", async (req, res) => {
       });
 
       res.json("ok");
-
-      // go back to the main page
-      // res.redirect("/");
     }
   }
 });

@@ -119,9 +119,18 @@ const sendDataToServer = () => {
       return response.json();
     })
     .then((response) => {
-      if (response == "This short url is taken") {
+      if (response == "not ok") {
+        // handle already taken customization error
         customization.value = "";
         customization.placeholder = "This short url is taken";
+        customization.classList.add("error");
+      } else if (response == "ok") {
+        // reset the customization input
+        customization.placeholder = "Customization";
+        customization.classList.remove("error");
+
+        // reload the page
+        window.location.href = "/";
       }
     })
     .catch((error) => {
@@ -135,5 +144,4 @@ const sendDataToServer = () => {
 document.querySelector("#submit-btn").addEventListener("click", (event) => {
   event.preventDefault();
   sendDataToServer();
-  // window.location.href = "/";
 });
