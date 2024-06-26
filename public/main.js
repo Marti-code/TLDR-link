@@ -45,7 +45,7 @@ const fetchShortenedLinksFromServer = (userKey) => {
             <td class="desktop-columns long-url">
               <a href="${el.full}">${el.full}</a>
             </td>
-            <td class="desktop-columns">
+            <td class="desktop-columns short-url">
               <a class="short-urls" href="${el.short}">${el.short}</a>
             </td>
             <td class="desktop-columns">${el.clicks}</td>
@@ -53,7 +53,7 @@ const fetchShortenedLinksFromServer = (userKey) => {
             <!-- mobile -->
             <td colspan="3" class="column-td">
               <div class="column-flex">
-                <a href="${el.full}">${el.full}</a>
+                <a class="long-url-a" href="${el.full}">${el.full}</a>
                 <a class="short-urls" href="${el.short}"
                   >${el.short}</a
                 >

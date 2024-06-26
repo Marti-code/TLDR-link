@@ -139,6 +139,24 @@ tbody tr {
   justify-content: flex-end;
 }
 
+.short-url {
+  max-width: 40px;
+  overflow-wrap: break-word;
+}
+
+.long-url a,
+.long-url-a {
+  max-width: 55vw;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 .column-flex {
   display: flex;
   flex-direction: column;
@@ -175,6 +193,11 @@ thead {
     gap: 0rem;
     margin-bottom: 1.2rem;
     width: auto;
+  }
+
+  .long-url a,
+  .long-url-a {
+    max-width: 76vw;
   }
 
   .main-info {
@@ -253,6 +276,11 @@ thead {
     padding-right: 1rem;
     min-width: 6rem;
     text-align: center;
+  }
+
+  .long-url a,
+  .long-url-a {
+    max-width: 36vw;
   }
 
   .long-url {
